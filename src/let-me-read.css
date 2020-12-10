@@ -125,3 +125,7 @@ summary {
 .mw-editsection {
   display: none;
 }
+a.t-d\:n {
+  text-decoration: none;
+  color: #f4f5f6;
+}

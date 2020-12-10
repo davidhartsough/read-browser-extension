@@ -119,13 +119,15 @@ if (document.body.id !== "let-me-read") {
     if (!goodElements.includes(e.tagName.toLowerCase())) e.remove();
   });
   Array.from(document.body.getElementsByTagName("a")).forEach((e) => {
-    e.setAttribute("target", "_blank");
-    e.setAttribute("rel", "noreferrer");
+    if (!e.href.startsWith("#")) {
+      e.setAttribute("target", "_blank");
+      e.setAttribute("rel", "noreferrer");
+    }
   });
   const content = document.getElementById("content");
   let newHtml = content || document.body;
   const articles = document.body.getElementsByTagName("article");
-  if (articles.length > 0) {
+  if (articles.length === 1) {
     newHtml = articles[0];
   }
   document.head.innerHTML = `
