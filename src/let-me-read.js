@@ -116,7 +116,10 @@ if (document.body.id !== "let-me-read") {
   });
   Array.from(document.body.getElementsByTagName("*")).forEach((e) => {
     e.removeAttribute("style");
-    if (!goodElements.includes(e.tagName.toLowerCase())) e.remove();
+    const tagName = e.tagName.toLowerCase();
+    if (!goodElements.includes(tagName) && !tagName.startsWith("app-")) {
+      e.remove();
+    }
   });
   Array.from(document.body.getElementsByTagName("a")).forEach((e) => {
     if (!e.href.startsWith("#")) {
