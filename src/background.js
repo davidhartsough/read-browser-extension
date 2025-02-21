@@ -1,8 +1,12 @@
-chrome.browserAction.onClicked.addListener(function () {
-  chrome.tabs.executeScript({
-    file: "let-me-read.js",
-  });
-  chrome.tabs.insertCSS({
-    file: "let-me-read.css",
-  });
+chrome.action.onClicked.addListener((tab) => {
+  if (tab.id) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ["let-me-read.js"],
+    });
+    chrome.scripting.insertCSS({
+      target: { tabId: tab.id },
+      files: ["let-me-read.css"],
+    });
+  }
 });
